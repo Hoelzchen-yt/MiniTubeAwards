@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniTube Awards ❄️</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at top, #0f172a, #020617 70%);
+      color: #e0f2fe;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header h1 {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #bae6fd;
+      text-shadow: 0 0 8px #38bdf8;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #e0f2fe;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: #38bdf8; }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 0 15px #38bdf8, 0 0 30px #0ea5e9;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #cbd5e1;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      margin: 0.5rem;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #e0f2fe;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      box-shadow: 0 0 15px #38bdf8, 0 0 30px #0ea5e9;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    section h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      text-shadow: 0 0 8px #38bdf8;
+    }
+    section p { margin-bottom: 2rem; color: #cbd5e1; }
+
+    .card-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: transform 0.3s, box-shadow 0.3s, color 0.3s;
+      color: #e0f2fe;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #38bdf8;
+      color: #8cdcff;
+    }
+
+    /* Goldener Hover nur für "Bestes Streamer Duo" */
+    .card.golden:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px gold, 0 0 40px goldenrod;
+      background: linear-gradient(145deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+      color: #f8d538;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(15,23,42,0.8);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    /* ❄️ Schneefall */
+    .snow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      opacity: 0.7;
+      user-select: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to { transform: translateY(100vh); }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="snow"></div>
+
+  <header>
+    <h1>❄️ MiniTube Awards</h1>
+    <nav>
+      <a href="#about">Über</a>
+      <a href="#categories">Kategorien</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Die MiniTube Awards 2025</h2>
+    <p>Die Award-Show für kleine YouTuber & Streamer – Winter Edition ⛄️</p>
+  </section>
+
+  <section id="about">
+    <h3>Was sind die MiniTube Awards?</h3>
+    <p>Die MiniTube Awards nominieren Creator, die mit Leidenschaft und Kreativität ihre Communities begeistern – diesmal im Winter-Look.</p>
+  </section>
+
+  <section id="categories">
+    <h3>Kategorien</h3>
+    <div class="card-grid">
+      <div class="card"><h4>Beste Musikalische Leistung</h4></div>
+      <div class="card"><h4>Bestes Geschnittenes Video</h4></div>
+      <div class="card"><h4>Bester Perfect Timing Moment</h4></div>
+      <div class="card"><h4>Bester Troll Moment</h4></div>
+      <div class="card"><h4>Bester Jumpscare Moment</h4></div>
+      <div class="card"><h4>Gruseligster Moment</h4></div>
+      <div class="card"><h4>Lustigster Moment</h4></div>
+      <div class="card"><h4>Bester Rage Moment</h4></div>
+      <div class="card"><h4>Bester Newcomer</h4></div>
+      <div class="card"><h4>Bester Cringe Moment</h4></div>
+      <div class="card"><h4>Beste Zuschauerinteraktion</h4></div>
+      <div class="card"><h4>Bester Lost Moment</h4></div>
+      <div class="card"><h4>Most Wholesome Moment</h4></div>
+      <div class="card"><h4>Most Surreal Moment</h4></div>
+      <div class="card"><h4>Bester Skin des Abends</h4></div>
+      <div class="card golden"><h4>Bestes Streamer Duo</h4></div>
+    </div>
+
+    <!-- STATISTIK Awards -->
+    <hr style="margin: 3rem 0; border: 1px solid #38bdf8; opacity: 0.4;">
+    <h3>Statistik Awards</h3>
+    <div class="card-grid">
+      <div class="card"><h4>Meiste Zuschauer</h4></div>
+      <div class="card"><h4>Sub Peak</h4></div>
+      <div class="card"><h4>Höchster Follower Zuwachs</h4></div>
+      <div class="card"><h4>Meiste Watchtime</h4></div>
+      <div class="card"><h4>Meiste Streamstunden</h4></div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <h3>Timeline</h3>
+    <div class="card-grid">
+      <div class="card"><strong>Voting:</strong><br>01.11 – 19.12</div>
+      <div class="card"><strong>Award-Show / Nominierung:</strong><br>20.12.2025 | 17-20 Uhr</div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h3>FAQ</h3>
+    <div class="card-grid">
+      <div class="card"><strong>Wer darf teilnehmen?</strong><br>Alle kleinen Creator mit Herzblut.</div>
+      <div class="card"><strong>Kostet das was?</strong><br>Nein, alles ist kostenlos!</div>
+      <div class="card"><strong>Wie nominiere ich?</strong><br>Über das Nominierungsformular.</div>
+    </div>
+  </section>
+
+  <footer>
+    ❄️ MiniTube Awards 2025 – Winter Gala Edition
+  </footer>
+
+  <script>
+    // Dezente Schneeflocken
+    const snow = document.querySelector('.snow');
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.textContent = '❄';
+      snowflake.style.left = Math.random() * window.innerWidth + 'px';
+      snowflake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      snowflake.style.animationDuration = (Math.random() * 6 + 4) + 's';
+      snow.appendChild(snowflake);
+      setTimeout(() => { snowflake.remove(); }, 10000);
+    }
+    setInterval(createSnowflake, 250);
+  </script>
+</body>
+</html>
