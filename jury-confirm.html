@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jury-Bestätigung ❄️ MiniTube Awards 2025</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; user-select:none; }
+  body {
+    font-family:'Segoe UI',sans-serif;
+    background: radial-gradient(circle at top, #0f172a, #020617 70%);
+    color:#e0f2fe;
+    text-align:center;
+    padding:2rem;
+    overflow-x:hidden;
+  }
+
+  .snow { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+  .snowflake { position:absolute; top:-10px; color:white; font-size:1em; opacity:0.7; user-select:none; animation:fall linear infinite; }
+  @keyframes fall { to { transform:translateY(100vh); } }
+
+  h1 { font-size:2.5rem; margin-bottom:1rem; color:#fff; text-shadow:0 0 15px #38bdf8,0 0 30px #0ea5e9; }
+  p { margin-bottom:2rem; color:#cbd5e1; font-size:1.2rem; }
+
+  .form-container {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    padding: 3rem 2rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+    max-width: 450px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(56,221,248,0.3);
+  }
+
+  label { display:block; text-align:left; margin-bottom:0.5rem; font-weight:bold; color:#9cffdb; }
+  input { width:100%; padding:0.7rem 0.8rem; margin-bottom:1.5rem; border:none; border-radius:12px; background:rgba(255,255,255,0.1); color:#e0f2fe; font-size:1rem; transition: all 0.3s; }
+  input:focus { outline:2px solid #38bdf8; box-shadow:0 0 10px #38bdf8; }
+
+  button { width:100%; padding:0.9rem; border-radius:50px; background: linear-gradient(90deg,#59ffd7,#6f6bff); color:#051622; font-weight:bold; font-size:1.1rem; border:none; cursor:pointer; transition: all 0.3s; box-shadow:0 8px 30px rgba(111,107,255,0.18); }
+  button:hover { transform: translateY(-3px); box-shadow:0 12px 40px rgba(111,107,255,0.25); }
+
+  .success { margin-top:1.5rem; color:#8cdcff; font-weight:bold; display:none; animation:fadeIn 0.5s forwards; }
+  @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+
+  footer { margin-top:3rem; color:#94a3b8; font-size:0.9rem; }
+
+</style>
+</head>
+<body>
+<div class="snow"></div>
+
+<h1>❄️ Jury-Bestätigung</h1>
+<p>Trage deine Discord- & Minecraft-Daten ein, um als Jurymitglied teilzunehmen.</p>
+
+<div class="form-container">
+  <label for="discord">Discord-Name</label>
+  <input type="text" id="discord" placeholder="z.B. DeinName#1234">
+
+  <label for="minecraft">Minecraft-Name</label>
+  <input type="text" id="minecraft" placeholder="z.B. DeinMCName">
+
+  <button id="confirmBtn">Bestätigen</button>
+  <div class="success" id="msg">Vielen Dank! Deine Bestätigung wurde gesendet.</div>
+</div>
+
+<footer>
+  ❄️ MiniTube Awards 2025 – Winter Gala Edition
+</footer>
+
+<script>
+const webhookUrl = "https://discord.com/api/webhooks/1421755065114300530/GIVdFd2ynp62nDICwlVuCLGfKP8ZizyYjFXx07FagUsEswWDVWdmWRR_olTs3Wi0fAT5";
+
+// Schneeflocken
+const snow = document.querySelector('.snow');
+function createSnowflake() {
+  const flake = document.createElement('div');
+  flake.classList.add('snowflake');
+  flake.textContent = '❄';
+  flake.style.left = Math.random()*window.innerWidth+'px';
+  flake.style.fontSize = (Math.random()*10+10)+'px';
+  flake.style.animationDuration = (Math.random()*6+4)+'s';
+  snow.appendChild(flake);
+  setTimeout(()=>flake.remove(),10000);
+}
+setInterval(createSnowflake, 200);
+
+// Button Event
+document.getElementById('confirmBtn').addEventListener('click', async () => {
+  const discord = document.getElementById('discord').value.trim();
+  const minecraft = document.getElementById('minecraft').value.trim();
+  if(!discord || !minecraft) { alert('Bitte beide Felder ausfüllen!'); return; }
+
+  const embedData = {
+    embeds: [{
+      title: "🎉 Neue Jury-Bestätigung",
+      description: "Ein neues Mitglied hat bestätigt!",
+      color: 0x38bdf8,
+      fields: [
+        { name: "Discord-Name", value: discord, inline: true },
+        { name: "Minecraft-Name", value: minecraft, inline: true }
+      ],
+      timestamp: new Date().toISOString(),
+      footer: { text: "MiniTube Awards 2025 – Winter Gala Edition" }
+    }]
+  };
+
+  try {
+    await fetch(webhookUrl, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(embedData)
+    });
+    document.getElementById('msg').style.display='block';
+    document.getElementById('discord').value='';
+    document.getElementById('minecraft').value='';
+  } catch(err) { alert('Fehler beim Senden: '+err.message); }
+});
+</script>
+</body>
+</html>
